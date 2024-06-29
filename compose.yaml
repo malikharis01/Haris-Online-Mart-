@@ -37,7 +37,7 @@ services:
       - product_db
       - broker
     ports:
-      - "8001:8000"  # Expose container port 8000 to host port 8000 
+      - "8002:8000"  # Expose container port 8000 to host port 8000 
 
   order_consumer_service:
     build:
@@ -49,7 +49,7 @@ services:
       - product_db
       - broker
     ports:
-      - "8001:8000"  # Expose container port 8000 to host port 8000 
+      - "8003:8000"  # Expose container port 8000 to host port 8000 
 
   product_db:
     image: postgres:latest  # Use the official PostgreSQL image
