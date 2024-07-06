@@ -8,48 +8,48 @@ services:
       context: ./product_service
       dockerfile: Dockerfile
     volumes:
-      - ./product_service:/app  # Sync local development directory with the container
+      - ./product_service:/app  
     depends_on:
       - kafka-ui
       - broker
     ports:
-      - "8000:8000"  # Expose container port 8000 to host port 8000 
+      - "8000:8000"  
 
   product-consumer-service:
     build:
       context: ./product_consumer
       dockerfile: Dockerfile
     volumes:
-      - ./product_consumer:/app  # Sync local development directory with the container
+      - ./product_consumer:/app  
     depends_on:
       - product_db
       - broker
     ports:
-      - "8001:8000"  # Expose container port 8000 to host port 8000 
+      - "8001:8000"  
 
   order_service:
     build:
       context: ./order_service
       dockerfile: Dockerfile
     volumes:
-      - ./order_service:/app  # Sync local development directory with the container
+      - ./order_service:/app  
     depends_on:
       - product_db
       - broker
     ports:
-      - "8002:8000"  # Expose container port 8000 to host port 8000 
+      - "8002:8000"  
 
   order_consumer_service:
     build:
       context: ./order_consumer
       dockerfile: Dockerfile
     volumes:
-      - ./order_consumer:/app  # Sync local development directory with the container
+      - ./order_consumer:/app  
     depends_on:
       - product_db
       - broker
     ports:
-      - "8003:8000"  # Expose container port 8000 to host port 8000 
+      - "8003:8000"  
 
 
 
@@ -58,12 +58,25 @@ services:
       context: ./inventory_service
       dockerfile: Dockerfile
     volumes:
-      - ./inventory_service:/app  # Sync local development directory with the container
+      - ./inventory_service:/app  
     depends_on:
       - product_db
       - broker
     ports:
-      - "8004:8000"  # Expose container port 8000 to host port 8000 
+      - "8004:8000"  
+
+
+  inventory_consumer:
+    build:
+      context: ./inventory_consumer
+      dockerfile: Dockerfile
+    volumes:
+      - ./inventory_consumer:/app  
+    depends_on:
+      - product_db
+      - broker
+    ports:
+      - "8005:8000"   
 
   product_db:
     image: postgres:latest  # Use the official PostgreSQL image

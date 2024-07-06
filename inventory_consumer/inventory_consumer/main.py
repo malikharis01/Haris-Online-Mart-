@@ -7,9 +7,9 @@ from aiokafka import AIOKafkaConsumer
 from fastapi import FastAPI, HTTPException
 from inventory_consumer.models import Inventory
 from sqlmodel import Session, select
-from inventory_consumer_service.proto import inventory_pb2, order_pb2, operation_pb2
-from inventory_consumer_service.setting import BOOTSTRAP_SERVER, KAFKA_CONSUMER_GROUP_ID, KAFKA_INVENTORY_TOPIC, KAFKA_ORDER_TOPIC, KAFKA_CONFIRMATION_TOPIC
-from inventory_consumer_service.db import create_tables, engine, get_session
+from inventory_consumer.proto import inventory_pb2, order_pb2, operation_pb2
+from inventory_consumer.settings import BOOTSTRAP_SERVER, KAFKA_CONSUMER_GROUP_ID, KAFKA_INVENTORY_TOPIC, KAFKA_ORDER_TOPIC, KAFKA_CONFIRMATION_TOPIC
+from inventory_consumer.db import create_tables, engine, get_session
 
 
 logging.basicConfig(level= logging.INFO)
