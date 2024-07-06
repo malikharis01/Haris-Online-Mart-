@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "operation.proto";
+
+message Product {
+  optional int32 id = 1;
+  optional int32 product_id = 2;
+  optional string name = 3;
+  optional float price = 4;
+  optional string category = 5;
+  optional OperationType operation = 7;
+} 
