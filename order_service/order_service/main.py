@@ -4,7 +4,7 @@ import logging
 from typing import Annotated, AsyncGenerator
 from fastapi import Depends, FastAPI
 
-from order_service import order_pb2
+from order_service.proto import order_pb2
 
 from order_service.models import Order
 from order_service.settings import BOOTSTRAP_SERVER, KAFKA_ORDER_TOPIC

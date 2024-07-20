@@ -1,10 +1,10 @@
 from sqlmodel import SQLModel, create_engine, Session
-from product_consumer import setting
+from product_consumer import settings
 
 
 
 
-connection_string: str = str(setting.DATABASE_URL).replace("postgresql", "postgresql+psycopg")
+connection_string: str = str(settings.DATABASE_URL).replace("postgresql", "postgresql+psycopg")
 
 
 

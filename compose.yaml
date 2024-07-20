@@ -78,8 +78,20 @@ services:
     ports:
       - "8005:8000"   
 
+  user_service:
+    build:
+      context: ./user_service
+      dockerfile: Dockerfile
+    volumes:
+      - ./user_service:/app  
+    depends_on:
+      - product_db
+      - broker
+    ports:
+      - "8006:8000"   
+
   product_db:
-    image: postgres:latest  # Use the official PostgreSQL image
+    image: postgres:latest 
     restart: always
     container_name: Product_db_Cont
     environment:
@@ -125,51 +137,10 @@ services:
     depends_on:
       - broker
 
-  # product_consumer_db:
-  #   image: postgres:latest  # Use the official PostgreSQL image
-  #   restart: always
-  #   container_name: product_Consumer_db_Cont
-  #   environment:
-  #       - POSTGRES_USER=ammar
-  #       - POSTGRES_PASSWORD=my_password
-  #       - POSTGRES_DB=product_consumer_db
-  #   ports:
-  #       - '5434:5432'
-  #   volumes:
-  #       - product_consumer_db:/var/lib/postgresql/data
-
-  # user-service:
-  #   build:
-  #     context: ./user-service
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./user-service:/app  # Sync local development directory with the container
-  #   depends_on:
-  #       - user_db
-  #       - broker
-  #   ports:
-  #     - "8001:8000"  # Expose container port 8000 to host port 8000  
-
-  # user_db:
-  #   image: postgres:latest  # Use the official PostgreSQL image
-  #   restart: always
-  #   container_name: User_db_Cont
-  #   environment:
-  #       - POSTGRES_USER=ammar
-  #       - POSTGRES_PASSWORD=my_password
-  #       - POSTGRES_DB=user_db
-  #   ports:
-  #       - '5434:5432'
-  #   volumes:
-  #       - user_db:/var/lib/postgresql/data
-
 volumes:
   product_db:
     driver: local
-  # user_db:
-  #   driver: local
-  # product_consumer_db:
-  #   driver: local
+
 
 networks:
   default:
